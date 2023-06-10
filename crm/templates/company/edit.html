@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+    <h1>Edit Company</h1>
+    <form role="form" method="POST" action="/company/edit/{{ company.id }}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_form_errors form %}
+        <div class="form-group">
+            <div>
+                <button type="submit" class="btn btn-info btn-block">Edit</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1>Companies</h1>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add Company</button>
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Company name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Address</th>
+                <th>Business field</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thread>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.id }}</td>
+                <td>{{ company.name }}</td>
+                <td>{{ company.email }}</td>
+                <td>{{ company.phone_number }}</td>
+                <td>{{ company.address }}</td>
+                <td>{{ company.business_field }}</td>
+                <td><a data-method="delete" href="/company/edit/{{ company.id }}" class="btn btn-primary" role="button">Edit</a></td>
+                <td><a data-method="delete" href="/company/{{ company.id }}" class="btn btn-danger" role="button">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "company/add-modal.html" %}
+{% endblock %}

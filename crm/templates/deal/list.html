@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1>Deals</h1>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add Deal</button>
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Budget</th>
+                <th>Currency</th>
+                <th>Status</th>
+                <th>Company</th>
+                <th>Employee</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thread>
+        <tbody>
+        {% for deal in deals %}
+            <tr>
+                <td>{{ deal.id }}</td>
+                <td>{{ deal.name }}</td>
+                <td>{{ deal.budget }}</td>
+                <td>{{ deal.currency }}</td>
+                <td>{{ deal.status }}</td>
+                <td>{{ deal.company.name }}</td>
+                <td>{{ deal.employee.name }}</td>
+                <td><a data-method="delete" href="/deal/edit/{{ deal.id }}" class="btn btn-primary" role="button">Edit</a></td>
+                <td><a data-method="delete" href="/deal/{{ deal.id }}" class="btn btn-danger" role="button">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "deal/add-modal.html" %}
+{% endblock %}

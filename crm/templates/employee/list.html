@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1>Employees</h1>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add Employee</button>
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>WID</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>Address</th>
+                <th>Position</th>
+                <th>Company</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thread>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.wid }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.phone_number }}</td>
+                <td>{{ employee.address }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.company.name }}</td>
+                <td><a data-method="delete" href="/employee/edit/{{ employee.id }}" class="btn btn-primary" role="button">Edit</a></td>
+                <td><a data-method="delete" href="/employee/{{ employee.id }}" class="btn btn-danger" role="button">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "employee/add-modal.html" %}
+{% endblock %}

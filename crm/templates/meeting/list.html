@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+
+{% block content %}
+    <h1>Meetings</h1>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">Add Meeting</button>
+    <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Organizer</th>
+                <th>Date</th>
+                <th>Deal</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thread>
+        <tbody>
+        {% for meeting in meetings %}
+            <tr>
+                <td>{{ meeting.id }}</td>
+                <td>{{ meeting.title }}</td>
+                <td>{{ meeting.description }}</td>
+                <td>{{ meeting.organizer.name }}</td>
+                <td>{{ meeting.date }}</td>
+                <td>{{ meeting.deal.name }}</td>
+                <td><a data-method="delete" href="/meeting/edit/{{ meeting.id }}" class="btn btn-primary" role="button">Edit</a></td>
+                <td><a data-method="delete" href="/meeting/{{ meeting.id }}" class="btn btn-danger" role="button">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% include "meeting/add-modal.html" %}
+{% endblock %}
